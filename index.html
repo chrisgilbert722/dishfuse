@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DishFuse | AI Restaurant Profit & Inventory Platform</title>
+<meta name="description" content="Turn food costs into predictable profit with AI-driven menu pricing, inventory forecasting, and waste prevention. Built for 1–5 location restaurants and franchises." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23059%22/><text x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22 font-size=%2270%22 fill=%22%23fff%22>D</text></svg>">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="DishFuse | AI Restaurant Profit & Inventory Platform">
+<meta property="og:description" content="Turn food costs into predictable profit with AI-driven menu pricing, inventory forecasting, and waste prevention.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80">
+<meta property="og:url" content="https://dishfuse.com">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+:root{
+--ink:#0b1220; /* midnight */
+--ink-2:#111827;
+--bg:#0a1626; /* page bg */
+--muted:#77819a;
+--white:#fff;
+--em:#10b981; /* emerald */
+--em-d:#059669;
+--amber:#f59e0b;
+--radius:18px;
+--shadow:0 10px 30px rgba(0,0,0,.18);
+--soft:0 8px 20px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+color:#0f172a; background:#ffffff;
+-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.header{
+position:sticky; top:0; z-index:50; background:rgba(255,255,255,.96);
+backdrop-filter:saturate(180%) blur(16px);
+border-bottom:1px solid rgba(15,23,42,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:38px;width:auto}
+.brand span{font-weight:800; font-size:24px; letter-spacing:-.02em; color:var(--em-d)}
+.navlinks{display:flex;align-items:center;gap:22px;font-weight:600;color:#1f2937}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-weight:700;border-radius:999px;transition:.2s;white-space:nowrap}
+.btn-lg{padding:12px 20px;font-size:15px}
+.btn-primary{background:var(--em);color:#fff;box-shadow:0 6px 18px rgba(16,185,129,.35)}
+.btn-primary:hover{background:var(--em-d);transform:translateY(-1px)}
+.btn-outline{border:2px solid rgba(31,41,55,.1);padding:10px 18px}
+.btn-outline:hover{background:#f3f4f6}
+
+/* Hero */
+.hero{position:relative;overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:-1}
+.hero-media:after{
+content:""; position:absolute; inset:0;
+background:linear-gradient(to bottom right, rgba(11,18,32,.62), rgba(11,18,32,.45)), radial-gradient(circle at 80% 10%, rgba(16,185,129,.22), transparent 60%);
+mix-blend: multiply;
+}
+.hero video{position:absolute;width:100%;height:100%;object-fit:cover;filter:brightness(.65) saturate(110%)}
+.hero-inner{padding:86px 0 70px;color:#fff;text-align:left}
+.badge{
+display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.22);
+padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.4);
+backdrop-filter:blur(6px); font-weight:700;
+}
+.dot{width:10px;height:10px;background:var(--em);border-radius:50%;box-shadow:0 0 10px rgba(16,185,129,.7); animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+h1{font-size:54px;line-height:1.08;margin:18px 0 12px;letter-spacing:-.02em}
+@media (max-width:840px){h1{font-size:40px}}
+.sub{color:#d1d5db;font-size:18px;max-width:720px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.hero-kpis{display:flex;gap:26px;margin-top:22px;color:#e5e7eb;font-weight:600}
+.hero-kpis small{opacity:.8;font-weight:500}
+
+/* Countdown pill */
+.pill{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--amber),#ef4444); color:#fff; padding:8px 14px;border-radius:999px;font-weight:800; box-shadow:0 8px 18px rgba(239,68,68,.35)}
+.pill svg{opacity:.95}
+
+/* Sections */
+section{padding:84px 0}
+.section-head{text-align:center;margin-bottom:30px}
+.muted{color:#6b7280}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:900px){.grid-3{grid-template-columns:1fr;}}
+.card{
+background:#fff;border:1px solid rgba(15,23,42,.06);
+border-radius:16px; padding:22px; box-shadow:var(--soft); transition:.25s
+}
+.card:hover{transform:translateY(-4px); box-shadow:0 18px 34px rgba(0,0,0,.14)}
+.icon-b{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--em),var(--em-d));color:#fff}
+
+/* Pricing */
+.pricing{background:linear-gradient(180deg,#f7fafc 0%, #ffffff 40%, #eefcf6 100%)}
+.price{font-size:48px;font-weight:900;color:var(--em-d);letter-spacing:-.02em}
+.price-cta{margin-top:16px}
+
+/* Testimonials */
+.testimonial{background:#0b1220;color:#e5e7eb;border:1px solid rgba(255,255,255,.08)}
+.testimonial .name{color:#a7f3d0;font-weight:700}
+
+/* FAQ */
+details{border:1px solid rgba(15,23,42,.1);border-radius:12px;padding:14px 18px;background:#fff}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+
+/* Footer */
+.footer{background:#0b1220;color:#cbd5e1}
+.footer a{color:#e2e8f0}
+.footnav{display:flex;gap:30px;justify-content:center;margin:16px 0 28px}
+.logoMark{height:58px;width:auto;filter:drop-shadow(0 0 18px rgba(16,185,129,.3))}
+.copyright{opacity:.7}
+
+/* Sticky mobile CTA */
+.sticky-cta{
+position:fixed;left:0;right:0;bottom:0;z-index:40;
+background:rgba(255,255,255,.96); backdrop-filter:blur(8px);
+padding:12px 16px;border-top:1px solid rgba(15,23,42,.08); display:none
+}
+@media (max-width:860px){.sticky-cta{display:block}}
+
+/* Exit intent modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:60}
+.modal .panel{background:#fff;border-radius:18px;padding:28px;max-width:520px;margin:16px; box-shadow:var(--shadow)}
+.modal .close{position:absolute;right:16px;top:10px;cursor:pointer;font-weight:800;font-size:20px;color:#64748b}
+
+.hide-on-mobile{display:block} .show-on-mobile{display:none}
+@media (max-width:860px){ .hide-on-mobile{display:none} .show-on-mobile{display:inline-flex} }
+</style>
+
+<!-- ✅ Google Analytics 4 (paste your ID) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config','G-XXXXXXX');
+</script> -->
+
+<!-- ✅ Meta Pixel (paste your ID) -->
+<!-- <script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','YOUR_PIXEL_ID'); fbq('track','PageView');
+</script> -->
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+<div class="container nav">
+<a class="brand" href="#top" aria-label="DishFuse home">
+<img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f80af0a039cb25fee2ea27/338477605_DishFuselogo3.png" alt="DishFuse logo">
+<span>DishFuse</span>
+</a>
+<nav class="navlinks">
+<a href="#features">Features</a>
+<a href="#pricing">Pricing</a>
+<a href="#testimonials">Results</a>
+<a href="#faq">FAQ</a>
+<!-- Change this later to https://app.dishfuse.com/login -->
+<a class="btn btn-outline btn-lg hide-on-mobile" href="#pricing">Login</a>
+<a class="btn btn-primary btn-lg hide-on-mobile" href="#pricing">Start Free Trial</a>
+<a class="btn btn-primary btn-lg show-on-mobile" href="#pricing">Start Trial</a>
+</nav>
+</div>
+</header>
+
+<!-- Hero -->
+<section id="top" class="hero">
+<div class="hero-media" aria-hidden="true">
+<video autoplay muted playsinline loop poster="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1600&auto=format&fit=crop">
+<source src="https://videos.pexels.com/video-files/5696351/5696351-uhd_2560_1440_25fps.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="container hero-inner">
+<div class="badge"><span class="dot"></span> AI for restaurants — not spreadsheets</div>
+<div style="margin-top:12px" class="pill">
+<!-- clock icon -->
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 2" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/></svg>
+<span>Limited Offer ends in <span id="count">10:00</span></span>
+</div>
+
+<h1>Turn food costs into <span style="color:#a7f3d0">predictable profit</span></h1>
+<p class="sub">AI-powered menu pricing, inventory forecasting, and waste prevention — so you grow margins without longer hours. Built for 1–5 location operators and franchise groups.</p>
+
+<div class="cta-row">
+<a href="#pricing" class="btn btn-primary btn-lg">Start Free 14-Day Trial</a>
+<a href="#features" class="btn btn-outline btn-lg">See How It Works</a>
+</div>
+
+<div class="hero-kpis">
+<span>★ ★ ★ ★ ★ <small>(4.9/5 by 247 owners)</small></span>
+<span>+27% margin lift</span>
+<span>42% less waste</span>
+<span>5-min ordering</span>
+</div>
+</div>
+</section>
+
+<!-- Features -->
+<section id="features">
+<div class="container">
+<div class="section-head">
+<h2 style="font-size:38px;letter-spacing:-.02em">Smart tools for smarter kitchens</h2>
+<p class="muted">Everything you need to price with confidence, order precisely, and stop waste before it starts.</p>
+</div>
+<div class="grid-3">
+<div class="card">
+<div class="icon-b">💡</div>
+<h3>AI Menu Pricing</h3>
+<p class="muted">Dynamic suggestions by dish & daypart to hit target margins without scaring guests.</p>
+</div>
+<div class="card">
+<div class="icon-b">📦</div>
+<h3>Inventory Forecasting</h3>
+<p class="muted">Predict next week’s buy list down to the SKU. Avoid 86s and over-ordering.</p>
+</div>
+<div class="card">
+<div class="icon-b">⚠️</div>
+<h3>Waste Prevention Alerts</h3>
+<p class="muted">Real-time flags for expiring items and anomalies — stop losses before they happen.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="pricing">
+<div class="container">
+<div class="section-head">
+<h2 style="font-size:38px;letter-spacing:-.02em">Simple, transparent pricing</h2>
+<p class="muted">Start small, scale when you’re ready. Cancel anytime.</p>
+</div>
+
+<div class="grid-3">
+<div class="card">
+<h3>Starter</h3>
+<div class="price">$99<span style="font-size:16px;color:#6b7280">/mo</span></div>
+<ul class="muted" style="line-height:1.9;margin:10px 0 0 0">
+<li>AI menu pricing</li>
+<li>Smart forecasting</li>
+<li>Waste alerts</li>
+<li>Dashboard analytics</li>
+</ul>
+<div class="price-cta">
+<a href="#cta" class="btn btn-outline btn-lg">Start Free Trial</a>
+</div>
+</div>
+
+<div class="card" style="border:2px solid var(--em);box-shadow:0 14px 34px rgba(16,185,129,.25);transform:scale(1.02)">
+<div class="badge" style="background:var(--em);border:none;color:#fff">MOST POPULAR</div>
+<h3 style="margin-top:10px">Growth</h3>
+<div class="price" style="color:#0f766e">$199<span style="font-size:16px;color:#6b7280">/mo</span></div>
+<ul class="muted" style="line-height:1.9;margin:10px 0 0 0">
+<li>Everything in Starter</li>
+<li>Multi-location support</li>
+<li>Advanced profit analytics</li>
+<li>Priority support</li>
+</ul>
+<div class="price-cta">
+<a href="#cta" class="btn btn-primary btn-lg" style="width:100%">Start Free Trial</a>
+</div>
+</div>
+
+<div class="card">
+<h3>Custom</h3>
+<div class="price" style="color:#111827">Let’s Talk</div>
+<ul class="muted" style="line-height:1.9;margin:10px 0 0 0">
+<li>Dedicated account manager</li>
+<li>Custom AI integration</li>
+<li>Data migration support</li>
+<li>Team training</li>
+</ul>
+<div class="price-cta">
+<a href="mailto:sales@dishfuse.com?subject=DishFuse%20Enterprise" class="btn btn-outline btn-lg">Contact Sales</a>
+</div>
+</div>
+</div>
+
+<p class="muted" style="text-align:center;margin-top:20px">14-day free trial • No credit card required • Cancel anytime</p>
+</div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+<div class="container">
+<div class="section-head">
+<h2 style="font-size:38px">What owners are saying</h2>
+</div>
+<div class="grid-3">
+<div class="card testimonial">
+<p style="fontStyle:italic">“We found $1,100/month in lost profit the first week. The AI flagged underpriced dishes we didn’t see.”</p>
+<p class="name">Maria’s Kitchen — TX</p>
+</div>
+<div class="card testimonial">
+<p>“Ordering takes 5 minutes now instead of 4 hours. Waste dropped 30%. DishFuse is our secret weapon.”</p>
+<p class="name">The Burger Spot — FL</p>
+</div>
+<div class="card testimonial">
+<p>“We didn’t change recipes — just prices and ordering. Profit margins jumped 22%.”</p>
+<p class="name">Fireside Grill — IL</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+<div class="container">
+<div class="section-head">
+<h2 style="font-size:38px">FAQ</h2>
+</div>
+<div class="grid-3">
+<div>
+<details open>
+<summary>Do I need a new POS?</summary>
+<p class="muted">No — start with simple CSVs or connect via API.</p>
+</details>
+<details>
+<summary>Is onboarding hard?</summary>
+<p class="muted">Setup takes under 10 minutes. We guide you step-by-step.</p>
+</details>
+</div>
+<div>
+<details open>
+<summary>Multi-location support?</summary>
+<p class="muted">Yes — Growth & Custom tiers are built for groups & franchises.</p>
+</details>
+<details>
+<summary>Is my data secure?</summary>
+<p class="muted">SOC-2 ready practices and encryption in transit & at rest.</p>
+</details>
+</div>
+<div id="cta" class="card" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start">
+<h3 style="margin:0 0 8px">Ready to see your hidden profit?</h3>
+<p class="muted" style="margin:0 0 14px">Start free for 14 days — no card required.</p>
+<a href="#pricing" class="btn btn-primary btn-lg">Start Free Trial</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="container" style="text-align:center;padding:46px 0">
+<img class="logoMark" src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f80af0a039cb25fee2ea27/338477605_DishFuselogo3.png" alt="DishFuse" />
+<p style="margin:12px 0 4px">AI Restaurant Profit & Inventory Optimization</p>
+<div class="footnav">
+<a href="#features">Features</a>
+<a href="#pricing">Pricing</a>
+<a href="#testimonials">Results</a>
+<a href="#faq">FAQ</a>
+<a href="mailto:support@dishfuse.com">Contact</a>
+</div>
+<p class="copyright">© <span id="yr"></span> DishFuse. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta">
+<div class="container" style="display:flex;gap:10px">
+<a href="#pricing" class="btn btn-primary btn-lg" style="flex:1;text-align:center">Start Free 14-Day Trial</a>
+</div>
+</div>
+
+<!-- Exit-intent Offer -->
+<div class="modal" id="exitModal" role="dialog" aria-modal="true" aria-label="Limited discount">
+<div class="panel" style="position:relative;text-align:center">
+<div class="close" id="closeModal">×</div>
+<div style="font-size:42px">🎉</div>
+<h3 style="margin:6px 0 10px">Wait! Get 20% Off Your First Month</h3>
+<p class="muted">Join DishFuse today and use code <b>SAVE20</b> at checkout.</p>
+<a href="#pricing" class="btn btn-primary btn-lg" style="margin-top:10px">Claim 20% Discount</a>
+</div>
+</div>
+
+<script>
+// Year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Countdown 10 minutes
+(function(){
+let t = 600; const el = document.getElementById('count');
+const tick = ()=>{ const m = Math.floor(t/60), s = (t%60+'').padStart(2,'0'); el.textContent = m+':'+s; if(t>0) t--; };
+tick(); setInterval(tick,1000);
+})();
+
+// Exit intent (desktop)
+(function(){
+let shown = false;
+const modal = document.getElementById('exitModal');
+const close = document.getElementById('closeModal');
+close.onclick = ()=> modal.style.display='none';
+document.addEventListener('mouseleave', (e)=>{
+if(e.clientY <= 0 && !shown){
+shown = true; modal.style.display='flex';
+}
+});
+})();
+</script>
+</body>
+</html>
